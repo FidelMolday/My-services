@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Professional Mobile Apps, Web Apps, Websites, and Design services. Fast and reliable."/>
+  <title>Get Your Design Done Fast! | FidelOuma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #ffffff;
+      --bg2:       #f4f6f9;
+      --card:      #ffffff;
+      --border:    #e2e8f0;
+      --accent:    #16a34a;
+      --accent-h:  #15803d;
+      --accent-lt: #dcfce7;
+      --accent-bd: #bbf7d0;
+      --text:      #0f172a;
+      --muted:     #64748b;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --radius:    14px;
+      --shadow:    0 2px 16px rgba(0,0,0,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 5%;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    }
+    .logo {
+      font-family: var(--font-head);
+      font-size: 1.4rem; font-weight: 800; letter-spacing: -1px;
+      color: var(--text); text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: .88rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent) !important; color: #fff !important;
+      padding: 8px 20px; border-radius: 100px;
+      font-weight: 700 !important; font-size: .83rem !important;
+    }
+    .nav-cta:hover { background: var(--accent-h) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 4px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0;
+      background: rgba(255,255,255,0.98); z-index: 99;
+      flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--text); text-decoration: none; transition: color .2s; }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 120px 5% 80px; position: relative; overflow: hidden;
+      background: var(--bg);
+    }
+    .hero-glow {
+      position: absolute; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(22,163,74,.07) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%,-55%); pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute; width: 350px; height: 350px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(22,163,74,.05) 0%, transparent 70%);
+      bottom: 8%; right: 8%; pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--accent-lt); border: 1px solid var(--accent-bd);
+      color: var(--accent); font-size: .75rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 28px;
+      animation: fadeUp .6s ease both;
+    }
+    .badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent); animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:.4; transform:scale(1.4); }
+    }
+
+    h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -2px;
+      color: var(--text); margin-bottom: 24px;
+      animation: fadeUp .7s .1s ease both;
+    }
+    h1 .highlight { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.08rem; color: var(--muted); max-width: 460px;
+      line-height: 1.7; margin-bottom: 40px;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp .7s .3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent); color: #fff; font-weight: 700; font-size: .95rem;
+      padding: 13px 30px; border-radius: 100px; text-decoration: none;
+      border: none; cursor: pointer; font-family: var(--font-body);
+      transition: background .2s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--accent-h); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent; color: var(--text); font-weight: 600;
+      font-size: .95rem; padding: 13px 30px; border-radius: 100px;
+      text-decoration: none; border: 1.5px solid var(--border);
+      transition: border-color .2s, color .2s, transform .2s;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* Code block — kept dark like original */
+    .code-block {
+      margin-top: 52px; background: #1e2433;
+      border: 1px solid #2d3748; border-radius: var(--radius);
+      padding: 22px 28px; text-align: left;
+      font-family: 'Courier New', monospace; font-size: .82rem;
+      animation: fadeUp .8s .4s ease both; position: relative;
+      max-width: 480px; width: 100%;
+    }
+    .code-block::before {
+      content: '● ● ●'; position: absolute; top: 10px; left: 16px;
+      font-size: .65rem; color: #4a5568; letter-spacing: 4px;
+    }
+    .code-block code { display: block; padding-top: 12px; line-height: 1.9; }
+    .code-block .kw  { color: #f6a05c; }
+    .code-block .fn  { color: #61afef; }
+    .code-block .str { color: #98c379; }
+    .code-block .num { color: #d19a66; }
+    .code-block .cm  { color: #5c6370; }
+    .code-block .var { color: #e5e7eb; }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section { position: relative; z-index: 1; }
+    .section-header { text-align: center; margin-bottom: 52px; }
+    .section-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800; letter-spacing: -1px; line-height: 1.1; color: var(--text);
+    }
+    .section-sub { color: var(--muted); margin-top: 10px; font-size: .95rem; }
+
+    /* ── SERVICES ── */
+    #services { padding: 96px 5%; background: var(--bg2); }
+    #services > div { max-width: 1200px; margin: 0 auto; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px;
+    }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s, border-color .25s; cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(22,163,74,0.12); border-color: #86efac;
+    }
+    .service-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+    .service-num {
+      font-size: .7rem; font-weight: 700; letter-spacing: 1.5px;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 5px;
+    }
+    .service-card h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .service-card p { color: var(--muted); font-size: .86rem; line-height: 1.65; }
+
+    /* ── ROADMAP ── */
+    #roadmap { padding: 96px 5%; background: var(--bg); }
+    .roadmap-inner { max-width: 860px; margin: 0 auto; }
+    .roadmap-steps { display: flex; flex-direction: column; position: relative; }
+    .roadmap-steps::before {
+      content: ''; position: absolute; left: 27px; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--accent), #86efac); opacity: .45;
+    }
+    .roadmap-step {
+      display: flex; gap: 26px; align-items: flex-start;
+      padding: 28px 0; border-bottom: 1px solid var(--border);
+    }
+    .roadmap-step:last-child { border-bottom: none; }
+    .step-dot {
+      width: 54px; height: 54px; min-width: 54px; border-radius: 50%;
+      background: var(--accent-lt); border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: 1rem; font-weight: 800;
+      color: var(--accent); z-index: 1;
+    }
+    .step-body h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; color: var(--text); }
+    .step-body p { color: var(--muted); font-size: .88rem; line-height: 1.65; }
+
+    /* ── CONTACT ── */
+    #contact { padding: 96px 5%; background: var(--bg2); }
+    .contact-wrap {
+      max-width: 1060px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
+    }
+    .contact-left h2 {
+      font-family: var(--font-head); font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      font-weight: 800; letter-spacing: -1px; line-height: 1.1;
+      margin-bottom: 16px; color: var(--text);
+    }
+    .contact-left p { color: var(--muted); line-height: 1.7; margin-bottom: 28px; font-size: .95rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .contact-info a {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--text); text-decoration: none;
+      font-weight: 500; font-size: .92rem; transition: color .2s;
+    }
+    .contact-info a:hover { color: var(--accent); }
+    .contact-info .ci-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--accent-lt); border: 1px solid var(--accent-bd);
+      display: flex; align-items: center; justify-content: center; font-size: .95rem;
+    }
+    .form-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow);
+    }
+    .form-card h3 { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; margin-bottom: 22px; color: var(--text); }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block; font-size: .76rem; font-weight: 700;
+      letter-spacing: .5px; color: var(--muted);
+      margin-bottom: 5px; text-transform: uppercase;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; background: var(--bg2); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 11px 14px; color: var(--text);
+      font-family: var(--font-body); font-size: .9rem; outline: none;
+      transition: border-color .2s; resize: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #b0bec5; }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); background: #fff; }
+    .form-group textarea { height: 108px; }
+    .success-msg {
+      display: none; align-items: center; gap: 8px;
+      background: var(--accent-lt); border: 1px solid #86efac;
+      color: var(--accent); border-radius: 10px;
+      padding: 11px 14px; font-size: .87rem; font-weight: 600; margin-top: 12px;
+    }
+    .success-msg.show { display: flex; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 28px 5%; border-top: 1px solid var(--border); background: var(--bg);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px;
+    }
+    footer p { color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--accent); text-decoration: none; font-size: .82rem; font-weight: 600; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .code-block { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Fidel<span>Ouma</span></a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/254114745379" class="nav-cta" target="_blank">WhatsApp Me</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="closeMobile()">Home</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#roadmap" onclick="closeMobile()">Roadmap</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://wa.me/254114745379" target="_blank" style="color:var(--accent)">WhatsApp Me</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="badge">Available Now · Fast Delivery</div>
+
+  <h1>GET YOUR <span class="highlight">DESIGN</span><br>DONE FAST!</h1>
+
+  <p class="hero-sub">Professional, fast, and high-quality digital services tailored to your needs.</p>
+
+  <div class="hero-btns">
+    <a href="#services" class="btn-primary">Explore Services</a>
+    <a href="https://wa.me/254114745379" target="_blank" class="btn-outline">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp Me
+    </a>
+  </div>
+
+  <div class="code-block">
+    <code>
+<span class="cm"># Services Config</span>
+<span class="var">dataset_id</span> = <span class="str">"req_892"</span>
+<span class="var">max_retries</span> = <span class="num">3</span>
+<span class="var">is_active</span> = <span class="kw">True</span>
+
+<span class="kw">def</span> <span class="fn">use_array</span>(<span class="var">a</span>, <span class="var">b</span>):
+  <span class="var">c</span> = <span class="num">-1</span>
+  <span class="kw">for</span> <span class="var">d</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(<span class="var">a</span>)):
+    <span class="kw">if</span> <span class="var">a</span>[<span class="var">d</span>] == <span class="var">b</span>: <span class="kw">return</span> <span class="var">c</span>
+  <span class="kw">return</span> <span class="var">c</span> + <span class="num">1</span>
+
+<span class="fn">dynamic_sort</span>(<span class="var">a</span>)
+    </code>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div>
+    <div class="section-header">
+      <div class="section-label">What I Offer</div>
+      <h2 class="section-title">My Services</h2>
+      <p class="section-sub">What I offer to help you succeed</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">📱</span>
+        <div class="service-num">Service 01</div>
+        <h3>Mobile Apps</h3>
+        <p>Custom Android & iOS applications tailored to your business needs.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💻</span>
+        <div class="service-num">Service 02</div>
+        <h3>Web Apps</h3>
+        <p>Powerful, scalable, and secure web applications built for performance.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌐</span>
+        <div class="service-num">Service 03</div>
+        <h3>Websites</h3>
+        <p>Modern, responsive, and fast websites that convert visitors.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚙️</span>
+        <div class="service-num">Service 04</div>
+        <h3>OS Installation</h3>
+        <p>Professional Windows, Linux, and macOS setups and troubleshooting.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🤖</span>
+        <div class="service-num">Service 05</div>
+        <h3>AI-Powered Application Development</h3>
+        <p>Building smart, intelligent applications powered by cutting-edge AI and machine learning technologies.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🖥️</span>
+        <div class="service-num">Service 06</div>
+        <h3>Windows Server Management</h3>
+        <p>Professional setup, configuration, and maintenance of Windows Server environments for your business.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <div class="service-num">Service 07</div>
+        <h3>Data Analysis</h3>
+        <p>In-depth data analysis, visualization, and insights to help you make smarter decisions.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚩</span>
+        <div class="service-num">Service 08</div>
+        <h3>Banner Design</h3>
+        <p>Professional, high-impact banners for web, social media, and marketing.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">☁️</span>
+        <div class="service-num">Service 09</div>
+        <h3>Cloud & DevOps</h3>
+        <p>End-to-end cloud infrastructure setup, CI/CD pipelines, and DevOps solutions for modern teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="roadmap-inner">
+    <div class="section-header">
+      <div class="section-label">Process</div>
+      <h2 class="section-title">Project Roadmap</h2>
+      <p class="section-sub">How we bring your ideas to life</p>
+    </div>
+    <div class="roadmap-steps">
+      <div class="roadmap-step">
+        <div class="step-dot">01</div>
+        <div class="step-body">
+          <h3>Discovery & Brief</h3>
+          <p>We start with a detailed conversation to understand your goals, requirements, and vision for the project.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-dot">02</div>
+        <div class="step-body">
+          <h3>Planning & Design</h3>
+          <p>I draft a clear plan, wireframes, and design concepts before writing a single line of code.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-dot">03</div>
+        <div class="step-body">
+          <h3>Development</h3>
+          <p>Full-speed development with regular check-ins to ensure we're on track with your expectations.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-dot">04</div>
+        <div class="step-body">
+          <h3>Review & Testing</h3>
+          <p>Thorough QA testing across devices and browsers. Your feedback shapes the final product.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-dot">05</div>
+        <div class="step-body">
+          <h3>Delivery & Support</h3>
+          <p>Clean handover with documentation, source files, and ongoing support to keep things running smoothly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <h2>Ready to Start?</h2>
+      <p>Contact me directly via WhatsApp for the fastest response, or leave a message here 24/7.</p>
+      <div class="contact-info">
+        <a href="tel:0114745379">
+          <div class="ci-icon">📞</div>
+          0114 745 379
+        </a>
+        <a href="https://wa.me/254114745379" target="_blank">
+          <div class="ci-icon">💬</div>
+          Chat on WhatsApp
+        </a>
+        <a href="mailto:fidelouma363@gmail.com">
+          <div class="ci-icon">✉️</div>
+          fidelouma363@gmail.com
+        </a>
+      </div>
+      <a href="https://wa.me/254114745379" target="_blank" class="btn-primary" style="display:inline-block">
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="form-card">
+      <h3>Leave a Message</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="fname" placeholder="John Doe" />
+      </div>
+      <div class="form-group">
+        <label>Phone or Email</label>
+        <input type="text" id="fcontact" placeholder="+254... or you@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="fmsg" placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;font-size:.95rem;" onclick="sendMsg()">Send Message</button>
+      <div class="success-msg" id="successMsg">
+        ✅ Message sent successfully! I will get back to you soon.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 FidelOuma. All Rights Reserved.</p>
+  <a href="https://wa.me/254114745379" target="_blank">wa.me/254114745379</a>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  function sendMsg() {
+    const name    = document.getElementById('fname').value.trim();
+    const contact = document.getElementById('fcontact').value.trim();
+    const msg     = document.getElementById('fmsg').value.trim();
+    if (!name || !contact || !msg) { alert('Please fill in all fields before sending.'); return; }
+    document.getElementById('fname').value    = '';
+    document.getElementById('fcontact').value = '';
+    document.getElementById('fmsg').value     = '';
+    const success = document.getElementById('successMsg');
+    success.classList.add('show');
+    setTimeout(() => success.classList.remove('show'), 5000);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.animation = `fadeUp .5s ${i * 0.07}s ease both`;
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.service-card, .roadmap-step').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
